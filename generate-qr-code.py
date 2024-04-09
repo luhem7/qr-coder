@@ -19,8 +19,13 @@ def simple_embed_center(qr_code_text, embedded_logo_path, output_qr_code):
     img.save(output_qr_code)
 
 
+def embed_background(qr_code_text, embedded_logo_path, output_qr_code):
+    qr_code = segno.make(qr_code_text, error='h')
+    qr_code.to_artistic(background=embedded_logo_path, target=output_qr_code, scale=5)
+
+
 if __name__ == "__main__" :
     qr_code_text = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
     embedded_logo_path = 'data/test-cat.png'
     output_qr_code = 'data/qr_code.png'
-    simple_embed_center(qr_code_text, embedded_logo_path, output_qr_code)
+    embed_background(qr_code_text, embedded_logo_path, output_qr_code)
